@@ -56,6 +56,36 @@ const Walkthrough = () => {
         paddingVertical: SIZES.height > 700 ? SIZES.padding : 20,
       }}>
       <Dots />
+
+      {/* Buttons */}
+
+      <View style={{flexDirection: 'row', height: 55}}>
+        <TextButton
+          label="Join Now"
+          contentContainerStyle={{
+            flex: 1,
+            borderRadius: SIZES.radius,
+            backgroundColor: COLORS.lightGrey,
+          }}
+          labelStyle={{
+            color: COLORS.primary,
+            ...FONTS.h3,
+          }}
+        />
+        <TextButton
+          label="Log In"
+          contentContainerStyle={{
+            flex: 1,
+            borderRadius: SIZES.radius,
+            backgroundColor: COLORS.lightGrey,
+            marginLeft: SIZES.radius,
+            backgroundColor: COLORS.primary,
+          }}
+          labelStyle={{
+            ...FONTS.h3,
+          }}
+        />
+      </View>
     </View>
   );
 
