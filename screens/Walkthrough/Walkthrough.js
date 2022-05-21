@@ -4,8 +4,20 @@ import {View, Text, Animated} from 'react-native';
 import {TextButton} from '../../components';
 import {COLORS, SIZES, constants, FONTS} from '../../constants';
 import Walkthrough1 from './Walkthrough1';
+import Walkthrough2 from './Walkthrough2';
 
 const Walkthrough = () => {
+  //set state to allow trigger of animation only when on second screen
+  const [walkthrough2Animate, setWalkThrough2Animate] = React.useState(false);
+
+  const onViewChangedRef = React.useRef(({viewableItems, changed}) => {
+    if (viewableItems[0].index == 1) {
+      //second walkthrough screen
+      setWalkThrough2Animate(true);
+    }
+  });
+
+  //get the scroll position of the Animated class component
   const scrollX = React.useRef(new Animated.Value(0)).current;
 
   const Dots = () => {
@@ -100,6 +112,7 @@ const Walkthrough = () => {
         decelerationRate="fast"
         showsHorizontalScrollIndicator={false}
         scrollEventThrottle={16}
+        onViewableItemsChanged={onViewChangedRef.current}
         onScroll={Animated.event(
           [{nativeEvent: {contentOffset: {x: scrollX}}}],
           {useNativeDriver: false},
@@ -113,6 +126,7 @@ const Walkthrough = () => {
                 justifyContent: 'center',
               }}>
               {index == 0 && <Walkthrough1 />}
+              {index == 1 && <Walkthrough2 animate={walkthrough2Animate} />}
             </View>
 
             {/* Title & Description */}
