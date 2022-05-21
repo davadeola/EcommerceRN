@@ -3,6 +3,7 @@ import {View, Text, Animated} from 'react-native';
 
 import {TextButton} from '../../components';
 import {COLORS, SIZES, constants, FONTS} from '../../constants';
+import Walkthrough1 from './Walkthrough1';
 
 const Walkthrough = () => {
   const scrollX = React.useRef(new Animated.Value(0)).current;
@@ -109,7 +110,10 @@ const Walkthrough = () => {
             <View
               style={{
                 flex: 1,
-              }}></View>
+                justifyContent: 'center',
+              }}>
+              {index == 0 && <Walkthrough1 />}
+            </View>
 
             {/* Title & Description */}
             <View
